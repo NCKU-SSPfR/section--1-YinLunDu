@@ -22,4 +22,4 @@ def test_solution(solution, s, p, expected):
 
 @pytest.mark.xfail
 def test_broken_solution(solution):
-    assert solution.isMatch("", "a") == False  # 添加測試用參數
+    assert solution.isMatch("a", ".*.") == True  # 添加測試用參數
