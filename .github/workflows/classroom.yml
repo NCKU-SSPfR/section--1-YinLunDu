@@ -578,22 +578,22 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pytest pytest-asyncio httpx fastapi numpy uvicorn
       - name: Run game over code
-        id: game_over
+        id: is_game_over
         continue-on-error: true
         run: |
           # Get correct judge
           cp -f DarkMaze/backend/src/game/judge.py DarkMaze/backend/tests/judge_code.py
-          OK_GAME_OVER_RESULT=$(pytest "DarkMaze/backend/tests/test_game_over.py" --maxfail=10 --disable-warnings -q|| true)
-          echo "$OK_GAME_OVER_RESULT"
+          OK_is_game_over_RESULT=$(pytest "DarkMaze/backend/tests/test_is_game_over.py" --maxfail=10 --disable-warnings -q|| true)
+          echo "$OK_is_game_over_RESULT"
           # Get only win
-          cp -f .github/bad_game_overs/only_win.py DarkMaze/backend/tests/judge_code.py
-          ONLY_WIN_GAME_OVER_RESULT=$(pytest "DarkMaze/backend/tests/test_game_over.py" --maxfail=10 --disable-warnings -q|| true)
-          echo "$ONLY_WIN_GAME_OVER_RESULT"
+          cp -f .github/bad_is_game_overs/only_win.py DarkMaze/backend/tests/judge_code.py
+          ONLY_WIN_is_game_over_RESULT=$(pytest "DarkMaze/backend/tests/test_is_game_over.py" --maxfail=10 --disable-warnings -q|| true)
+          echo "$ONLY_WIN_is_game_over_RESULT"
           # Get const
-          cp -f .github/bad_game_overs/const.py DarkMaze/backend/tests/judge_code.py
-          CONST_GAME_OVER_RESULT=$(pytest "DarkMaze/backend/tests/test_game_over.py" --maxfail=10 --disable-warnings -q|| true)
-          echo "$CONST_GAME_OVER_RESULT"
-          echo "::set-output name=score::$(if [[ "$OK_GAME_OVER_RESULT" != *"failed"* && "$ONLY_WIN_GAME_OVER_RESULT" == *"failed"* && "$CONST_GAME_OVER_RESULT" == *"failed"* ]]; then echo 6; else echo 0; fi)"
+          cp -f .github/bad_is_game_overs/const.py DarkMaze/backend/tests/judge_code.py
+          CONST_is_game_over_RESULT=$(pytest "DarkMaze/backend/tests/test_is_game_over.py" --maxfail=10 --disable-warnings -q|| true)
+          echo "$CONST_is_game_over_RESULT"
+          echo "::set-output name=score::$(if [[ "$OK_is_game_over_RESULT" != *"failed"* && "$ONLY_WIN_is_game_over_RESULT" == *"failed"* && "$CONST_is_game_over_RESULT" == *"failed"* ]]; then echo 6; else echo 0; fi)"
       - name: Run solve maze with no backend
         id: no_backend
         continue-on-error: true
@@ -631,12 +631,12 @@ jobs:
       - name: Assign Dark Maze Test score
         id: assign_darkmaze_score
         run: |
-          GAME_OVER_SCORE="${{ steps.game_over.outputs.score }}"
+          is_game_over_SCORE="${{ steps.is_game_over.outputs.score }}"
           NO_BACKEND_SCORE="${{ steps.no_backend.outputs.score }}"
           MOCK_BACKEND_SCORE="${{ steps.mock_backend.outputs.score }}"
           SOLVE_MAZE_SCORE="${{ steps.solve_maze.outputs.score }}"
           
-          TOTAL=$((GAME_OVER_SCORE + NO_BACKEND_SCORE + MOCK_BACKEND_SCORE + SOLVE_MAZE_SCORE))
+          TOTAL=$((is_game_over_SCORE + NO_BACKEND_SCORE + MOCK_BACKEND_SCORE + SOLVE_MAZE_SCORE))
           echo "darkmaze_testing_score=$TOTAL" >> "$GITHUB_OUTPUT"
   calculate-score:
     runs-on: ubuntu-latest

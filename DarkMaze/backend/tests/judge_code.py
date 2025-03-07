@@ -38,7 +38,7 @@ def _load_maze_from_json(maze_level_name):
     
     maze_level_name = data.get("maze_level_name", "Unknown Level")
     map_size = tuple(data.get("map_size", [10, 10]))
-    starting_position = tuple(data.get("starting_position", [0, 0]))
+    start_position = tuple(data.get("start_position", [0, 0]))
     end_position = tuple(data.get("end_position", [0, 0]))
     map_string = data.get("map", "")
     reversal_nodes = data.get("reversal_node", [])
@@ -48,7 +48,7 @@ def _load_maze_from_json(maze_level_name):
     return {
         "maze_level_name": maze_level_name,
         "map_size": map_size,
-        "starting_position": starting_position,
+        "start_position": start_position,
         "end_position": end_position,
         "map": parsed_map
     }
@@ -67,7 +67,7 @@ def hit_obstacle(position, maze_level_name):
         # Position is out of bounds
         return True
     
-def game_over(health):
+def is_game_over(health):
     if health == 0 or health == 666:
         return True
     

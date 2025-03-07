@@ -6,26 +6,26 @@ def _parse_map(map_string, map_size, reversal_nodes=[]):
     width, height = map_size
     filtered_chars = re.sub(r'[^a-zA-Z]', '', map_string)
     
-    QQ = [bin(ord(c))[2:].zfill(8) for c in filtered_chars]
+    binary_strings = [bin(ord(c))[2:].zfill(8) for c in filtered_chars]
     
-    Dora_friend = []
-    for Q in QQ:
+    binary_map = []
+    for Q in binary_strings:
         first_half = int(Q[:4], 2)
         second_half = int(Q[4:], 2)
-        Dora_friend.extend([first_half % 2, second_half % 2])
+        binary_map.extend([first_half % 2, second_half % 2])
     
-    while len(Dora_friend) < width * height:
-        Dora_friend.append(0)
+    while len(binary_map) < width * height:
+        binary_map.append(0)
     
-    Dora_friend = Dora_friend[:width * height]
+    binary_map = binary_map[:width * height]
     
-    swiper = np.array(Dora_friend).reshape((height, width))
+    maze_grid = np.array(binary_map).reshape((height, width))
     
     for x, y in reversal_nodes:
         if 0 <= x < height and 0 <= y < width:
-            swiper[y, x] = 1 - swiper[y, x]
+            maze_grid[y, x] = 1 - maze_grid[y, x]
     
-    return swiper
+    return maze_grid
 
 def _load_maze_from_json(maze_level_name):
     with open("./src/game/maze_level/" + maze_level_name + ".json", 'r', encoding='utf-8') as f:
@@ -33,7 +33,7 @@ def _load_maze_from_json(maze_level_name):
     
     maze_level_name = data.get("maze_level_name", "Unknown Level")
     map_size = tuple(data.get("map_size", [10, 10]))
-    starting_position = tuple(data.get("starting_position", [0, 0]))
+    start_position = tuple(data.get("start_position", [0, 0]))
     end_position = tuple(data.get("end_position", [0, 0]))
     map_string = data.get("map", "")
     reversal_nodes = data.get("reversal_node", [])
@@ -43,7 +43,7 @@ def _load_maze_from_json(maze_level_name):
     return {
         "maze_level_name": maze_level_name,
         "map_size": map_size,
-        "starting_position": starting_position,
+        "start_position": start_position,
         "end_position": end_position,
         "map": parsed_map
     }
@@ -60,16 +60,8 @@ def hit_obstacle(position, maze_level_name):
     else:
         # Position is out of bounds
         return True
-
-def hit_obstacle_again_and_again():
-    while True:
-        hit_obstacle(hahahahaha, 995)
-        while True:
-            hit_obstacle(hahahahaha, 995)
-            while True:
-                hit_obstacle_again_and_again()
     
-def game_over(health):
+def is_game_over(health):
     if health == 0 or health == 666:
         return True
     
