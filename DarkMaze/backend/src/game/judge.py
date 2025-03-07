@@ -9,9 +9,9 @@ def _parse_map(map_string, map_size, reversal_nodes=[]):
     binary_strings = [bin(ord(c))[2:].zfill(8) for c in filtered_chars]
     
     binary_map = []
-    for Q in binary_strings:
-        first_half = int(Q[:4], 2)
-        second_half = int(Q[4:], 2)
+    for binary_string in binary_strings:
+        first_half = int(binary_string[:4], 2)
+        second_half = int(binary_string[4:], 2)
         binary_map.extend([first_half % 2, second_half % 2])
     
     while len(binary_map) < width * height:
