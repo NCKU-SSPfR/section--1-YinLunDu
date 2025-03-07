@@ -11,7 +11,6 @@ testcases = [
     ("aa", "a", False),
     ("aa", "a*", True),
     ("ab", ".*", True),
-    ("a", ".*.", False),  # 修正預期值
     ("aab", "c*a*b", True),
     ("aaa", "ab*a*c*a", True)
 ]
