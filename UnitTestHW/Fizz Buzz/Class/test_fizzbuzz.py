@@ -16,7 +16,7 @@ class TestSolution:
         assert solution.singleFizzBuzz(15) == "FizzBuzz"
     
     def test_2(self, solution):
-        assert solution.singleFizzBuzz(5) == "2"
+        assert solution.singleFizzBuzz(2) == "2"
 
     def test_main_14(self, solution):
         assert solution.fizzBuzz(14) == ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14"]
