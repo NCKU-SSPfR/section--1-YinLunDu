@@ -62,17 +62,11 @@ def hit_obstacle(position, maze_level_name):
         return True
     
 def is_game_over(health):
-    if health == 0 or health == 666:
-        return True
-    
-    return False
+    return health == 0 or health == 666
 
 def arrive_at_destination(maze_level_name, current_position):
     with open("./src/game/maze_level/" + maze_level_name + ".json", 'r', encoding='utf-8') as f:
         data = json.load(f)
     
     end_position = tuple(data.get("end_position", [0, 0]))
-    if tuple(current_position) == end_position:
-        return True
-    
-    return False
+    return tuple(current_position) == end_position
