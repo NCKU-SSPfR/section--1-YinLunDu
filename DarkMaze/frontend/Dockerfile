@@ -7,17 +7,20 @@ WORKDIR /app
 # 建立非 root 使用者
 RUN useradd -m appuser
 
-# 切換至非 root 使用者
-USER appuser
-
 # 複製 Python 依賴需求檔案
 COPY --chown=appuser:appuser requirements.txt .
 
 # 安裝後端依賴
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 複製應用程式程式碼
-COPY --chown=appuser:appuser . .
+RUN chown -R appuser:appuser /app
+
+COPY src/ /app/src
+
+# 切換至非 root 使用者
+USER appuser
+
+EXPOSE 8088
 
 # 啟動 FastAPI 應用
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8088", "--reload"]
