@@ -7,4 +7,4 @@ def test_game_over_666():
     assert is_game_over(666) == True
 
 def test_game_over_other():
-    assert is_game_over(114514) == False
+    assert is_game_over(87) == False
