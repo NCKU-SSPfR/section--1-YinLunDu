@@ -13,10 +13,10 @@ COPY requirements.txt .
 # 安裝後端依賴
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN chown -R appuser:appuser /app
-
 COPY requirements.txt /app/requirements.txt
 COPY src/ /app/src
+
+RUN chown -R appuser:appuser /app
 
 # 切換至非 root 使用者
 USER appuser
