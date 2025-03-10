@@ -470,7 +470,7 @@
     {
         "type": "convention",
         "module": "tests.judge_code",
-        "obj": "is_game_over",
+        "obj": "game_over",
         "line": 70,
         "column": 0,
         "endLine": 70,
@@ -483,7 +483,7 @@
     {
         "type": "refactor",
         "module": "tests.judge_code",
-        "obj": "is_game_over",
+        "obj": "game_over",
         "line": 71,
         "column": 7,
         "endLine": 71,
@@ -568,7 +568,7 @@
         "endColumn": 34,
         "path": "/usr/src/tests/test_game_over.py",
         "symbol": "singleton-comparison",
-        "message": "Comparison 'is_game_over(0) == True' should be 'is_game_over(0) is True' if checking for the singleton value True, or 'is_game_over(0)' if testing for truthiness",
+        "message": "Comparison 'game_over(0) == True' should be 'game_over(0) is True' if checking for the singleton value True, or 'game_over(0)' if testing for truthiness",
         "message-id": "C0121"
     },
     {
@@ -594,7 +594,7 @@
         "endColumn": 36,
         "path": "/usr/src/tests/test_game_over.py",
         "symbol": "singleton-comparison",
-        "message": "Comparison 'is_game_over(666) == True' should be 'is_game_over(666) is True' if checking for the singleton value True, or 'is_game_over(666)' if testing for truthiness",
+        "message": "Comparison 'game_over(666) == True' should be 'game_over(666) is True' if checking for the singleton value True, or 'game_over(666)' if testing for truthiness",
         "message-id": "C0121"
     },
     {
@@ -620,7 +620,7 @@
         "endColumn": 36,
         "path": "/usr/src/tests/test_game_over.py",
         "symbol": "singleton-comparison",
-        "message": "Comparison 'is_game_over(87) == False' should be 'is_game_over(87) is False' if checking for the singleton value False, or 'not is_game_over(87)' if testing for falsiness",
+        "message": "Comparison 'game_over(87) == False' should be 'game_over(87) is False' if checking for the singleton value False, or 'not game_over(87)' if testing for falsiness",
         "message-id": "C0121"
     },
     {
