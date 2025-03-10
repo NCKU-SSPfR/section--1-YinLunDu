@@ -1,5 +1,5 @@
 # 使用 Python 3.11 作為基礎映像
-FROM python:3.11-slim
+FROM python:3.11
 
 # 建立非 root 使用者
 RUN useradd -m appuser
