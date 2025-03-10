@@ -61,7 +61,7 @@ def hit_obstacle(position, maze_level_name):
         # Position is out of bounds
         return True
     
-def is_game_over(health):
+def game_over(health):
     return health == 0 or health == 666
 
 def arrive_at_destination(maze_level_name, current_position):
