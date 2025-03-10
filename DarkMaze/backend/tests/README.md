@@ -7,11 +7,11 @@ pip install -r requirements.txt
 This testing section will need **pytest, pytest-asyncio and httpx**, the others are for running the backend.
 
 ## Game Over  (10 points)  
-1. Go to DarkMaze/backend/tests/test_game_over.py  
-> The function ```game_over()``` should return ```True``` if health is equal to 0 or 666.  
+1. Go to DarkMaze/backend/tests/test_is_game_over.py  
+> The function ```is_game_over()``` should return ```True``` if health is equal to 0 or 666.  
 
-2. **Write the needed tests to test game_over (there should at least be 3 to test all cases)**  
-3. Go to DarkMaze/backend/tests/ and run ```pytest test_game_over.py```, all tests should pass.  
+2. **Write the needed tests to test is_game_over (there should at least be 3 to test all cases)**  
+3. Go to DarkMaze/backend/tests/ and run ```pytest test_is_game_over.py```, all tests should pass.  
 
 ## Integration (12 points)  
 1. Go to DarkMaze/backend/ and run ```python -m src.main```, running the backend  
