@@ -9,7 +9,7 @@ services:
       - POSTGRES_DB=sonarqube
     networks:
       - sonar-network
-
+  
   sonarqube:
     image: sonarqube:lts-community
     container_name: sonarqube
@@ -36,7 +36,7 @@ services:
       pip3 install --no-cache-dir pylint flake8 &&
       mkdir -p /reports &&
       pylint --output-format=json /usr/src/**/*.py > /reports/pylint-report.json || true &&
-      flake8 --format=json /usr/src > /reports/flake8-report.json || true"
+      flake8 --format=json /usr/src > /reports/flake8-report.json || true
 
   sonar-scanner:
     image: sonarsource/sonar-scanner-cli
@@ -62,7 +62,7 @@ services:
     networks:
       - sonar-network
 
-  frontend:
+  frontend: 
     build: ./frontend
     ports:
       - "8088:8088"
